@@ -224,6 +224,7 @@ type AppInstanceResp struct {
 	ReleaseAt   time.Time `json:"releaseAt"`   //释放成功时间
 	ProductNo   string    `json:"productNo"`   //产品编号
 	ExtendIp    string    `json:"extendIp"`    //扩展地址 仅供展示，部分产品该字段有值 2024-11-20 新增
+	ProjectId   string    `json:"projectId"`   //项目Id
 }
 
 // 同步地域请求
@@ -584,6 +585,7 @@ type AppInstanceItem struct {
 	ReleaseAt   time.Time `json:"releaseAt"`   //释放成功时间
 	ProductNo   string    `json:"productNo"`   //产品编号
 	ExtendIp    string    `json:"extendIp"`    //扩展地址 仅供展示，部分产品该字段有值 2024-11-20 新增
+	ProjectId   string    `json:"projectId"`   //项目Id
 }
 
 // 设置子账户流量上限请求
