@@ -93,7 +93,7 @@ type AppProductSyncResp struct {
 	PwdDrawSessionRange  string             `json:"pwdDrawSessionRange"`  //动态代理账密流量提取持续时间范围 单位分钟 新增于2025/09/5
 	FlowConversionBase   int                `json:"flowConversionBase"`   //动态代理流量单位转化基准 1000 或者 1024 0表示未知或不支持  新增于2025/09/5
 	ProjectList          []ProjectItem      `json:"projectList"`          // ProjectList
-	ProductType          int                `json:"productType"`          // 2=share
+	ProductType          int                `json:"productType"`          // 2=共享
 	ResetPassword        int                `json:"resetPassword"`        // 代理是否支持重置密码 1=是 -1=否 默认为否
 }
 
@@ -254,15 +254,16 @@ type OpenParam struct {
 	SupplierCode string      `json:"supplierCode"` //供应商代码（匹配产品用，如果产品编号有值忽略该项）（可为null,随机分配）
 	Unit         int8        `json:"unit"`         //单位（匹配产品用，如果产品编号有值忽略该项） 1=天 2=周(7天) 3=月(自然月) 4=年(自然年365，366) 10=无限制
 	IspType      int         `json:"ispType"`      //isp类型（匹配产品用，如果产品编号有值忽略该项） 1=单isp 2=双isp
-	Count        int         `json:"count"`        //购买数量 （实例个数）静态必填 默认1 一次最大20
 	Duration     int32       `json:"duration"`     //相对时长 必要 默认1 为Unit的时长 此处不是指的绝对时长 指的是相对x个时间单位(unit)的时长 2024-9-21改为产品定义的时长单位 （匹配产品用，如果产品编号有值忽略该项）  之前对接的定义不变
-	Renew        bool        `json:"renew"`        //是否续费 1续费 默认0
+	ProductType  int         `json:"productType"`  //产品类型 1=独享 2=共享 默认1 （匹配产品用，如果产品编号有值忽略该项）
+	Count        int         `json:"count"`        //购买数量 （实例个数）静态必填 默认1 一次最大20
+	Renew        bool        `json:"renew"`        //是否续费 1续费 默认0 该字段已废弃，不再生效
 	ExtBandWidth int32       `json:"extBandWidth"` //额外增加带宽 单位Mbps
 	AppUsername  string      `json:"appUsername"`  //渠道商主账号，开通动态代理的时候必填(必须在平台上注册过)
 	Flow         int         `json:"flow"`         //动态流量 最大102400MB 动态流量必填 单位MB
 	UseBridge    uint8       `json:"useBridge"`    //是否使用桥 0=随app设置 1=不使用桥 2=使用桥 默认0
 	CIDRBlocks   []CIDRBlock `json:"cidrBlocks"`   //静态购买所在网段及数量（产品有的才支持） 2024/06/27新增
-	ProjectId    string      `json:"projectId"`    //购买项目id,保留字段，后续支持
+	ProjectId    string      `json:"projectId"`    //购买项目id
 	CycleTimes   int32       `json:"cycleTimes"`   //购买时长周期数，此字段对有时长的产品有意义，默认1 表示产品的unit * duration 如果该字段大于0 duration字段不作为购买时长使用 2024/09/21新增
 }
 
