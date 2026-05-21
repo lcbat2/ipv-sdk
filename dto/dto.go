@@ -200,6 +200,11 @@ type AppGetInstanceReq struct {
 	Instances []string `json:"Instances"` //平台实例编号
 }
 
+// 更换代理请求
+type AppChangeProxyReq struct {
+	InstanceNo string `json:"instanceNo"` //平台实例编号
+}
+
 // 实例返回
 type AppInstanceResp struct {
 	InstanceNo  string    `json:"instanceNo"`  //平台实例编号（渠道商续费和释放操作使用该编号）
