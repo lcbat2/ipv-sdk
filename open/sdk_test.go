@@ -88,6 +88,18 @@ func TestGetInstance(t *testing.T) {
 	t.Log(ps)
 }
 
+func TestIpvClient_ChangeProxy(t *testing.T) {
+	o := dto.AppChangeProxyReq{
+		InstanceNo: "c_gzmtux84eu8ipkq",
+	}
+	ps, err := getClient().ChangeProxy(o)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	t.Logf("%+v", ps)
+}
+
 func TestGetArea(t *testing.T) {
 	ps, err := getClient().GetArea(dto.AppGetAreaReq{})
 	if err != nil {

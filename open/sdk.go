@@ -31,6 +31,8 @@ const (
 	GetOrderUri = "/api/open/app/order/" + VERSION
 	// 获取实列列表
 	GetInstanceUri = "/api/open/app/instance/" + VERSION
+	// 更换代理
+	InstanceChangeUri = "/api/open/app/instance/change/" + VERSION
 	// 地域列表
 	GetAreaUri = "/api/open/app/area/" + VERSION
 	// 开通实例
@@ -207,6 +209,19 @@ func (c *IpvClient) GetOrder(params dto.AppGetOrderReq) (resp *dto.AppOrderResp,
 // 获取实例信息
 func (c *IpvClient) GetInstance(params dto.AppGetInstanceReq) (resp []dto.AppInstanceResp, err error) {
 	data, err := c.postData(GetInstanceUri, params)
+	if err != nil {
+		return nil, err
+	}
+	err = json.Unmarshal(data, &resp)
+	if err != nil {
+		return
+	}
+	return
+}
+
+// 更换代理
+func (c *IpvClient) ChangeProxy(params dto.AppChangeProxyReq) (resp []dto.AppInstanceResp, err error) {
+	data, err := c.postData(InstanceChangeUri, params)
 	if err != nil {
 		return nil, err
 	}
