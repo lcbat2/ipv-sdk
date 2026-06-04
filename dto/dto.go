@@ -184,7 +184,7 @@ type AppGetOrderReq struct {
 type AppOrderResp struct {
 	OrderNo    string            `json:"orderNo"`    //平台订单号
 	AppOrderNo string            `json:"appOrderNo"` //渠道商（购买方）订单编号
-	Type       int8              `json:"type"`       //订单类型 1=新建 2=续费 3=释放
+	Type       int8              `json:"type"`       //订单类型 1=新建 2=续费 3=释放 5=更换代理
 	Status     int8              `json:"status"`     //订单状态 1=待处理 2=处理中 3=处理成功 4=处理失败 5=部分完成
 	Count      int               `json:"count"`      //购买数量
 	Amount     string            `json:"amount"`     //总价
@@ -203,6 +203,15 @@ type AppGetInstanceReq struct {
 // 更换代理请求
 type AppChangeProxyReq struct {
 	InstanceNo string `json:"instanceNo"` //平台实例编号
+	AppOrderNo string `json:"appOrderNo"` //渠道商更换代理订单号，同一渠道商下必须唯一，重复提交会返回已有更换订单
+}
+
+// 更换代理返回
+type AppChangeProxyResp struct {
+	OrderNo    string `json:"orderNo"`    //平台更换代理订单号
+	AppOrderNo string `json:"appOrderNo"` //渠道商更换代理订单号
+	InstanceNo string `json:"instanceNo"` //平台实例编号
+	Status     int8   `json:"status"`     //更换状态 1=待处理 2=处理中 3=处理成功 4=处理失败
 }
 
 // 实例返回
