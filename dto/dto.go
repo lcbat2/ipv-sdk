@@ -202,8 +202,11 @@ type AppGetInstanceReq struct {
 
 // 更换代理请求
 type AppChangeProxyReq struct {
-	InstanceNo string `json:"instanceNo"` //平台实例编号
-	AppOrderNo string `json:"appOrderNo"` //渠道商更换代理订单号，同一渠道商下必须唯一，重复提交会返回已有更换订单
+	InstanceNo       string      `json:"instanceNo"`       //平台实例编号
+	AppOrderNo       string      `json:"appOrderNo"`       //渠道商更换代理订单号，同一渠道商下必须唯一，重复提交会返回已有更换订单
+	TargetProductNo  string      `json:"targetProductNo"`  //可选，替换到指定平台产品下的 IP
+	TargetCIDRBlocks []CIDRBlock `json:"targetCidrBlocks"` //可选，替换到指定 IP 段下的 IP
+	Reason           string      `json:"reason"`           //可选，更换原因，最多 64 字符
 }
 
 // 更换代理返回
