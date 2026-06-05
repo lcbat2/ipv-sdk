@@ -95,6 +95,7 @@ type AppProductSyncResp struct {
 	ProjectList          []ProjectItem      `json:"projectList"`          // ProjectList
 	ProductType          int                `json:"productType"`          // 2=共享
 	ResetPassword        int                `json:"resetPassword"`        // 代理是否支持重置密码 1=是 -1=否 默认为否
+	ChangeProxy          int                `json:"changeProxy"`          // 代理是否支持更换代理 1=支持 -1=不支持 默认不支持
 	AsnAttr              int8               `json:"asnAttr"`              // 产品asn属性 0=未知,1=ISP,2=IDC,3=BUS 新增于2026/02/09
 }
 
